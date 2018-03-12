@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <properties>
+        <property name="logPath">../logs</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console"  target="SYSTEM_OUT">
+            <!-- pure -->
+            <PatternLayout pattern="%d{ABSOLUTE} %-5p %C{1.} %L -%m%n" />
+            <!-- full -->
+            <!-- <PatternLayout pattern="%d %-5p %C %L - %m%n" /> -->
+        </Console>
+        <!-- 按天第天备份一个日志 -->
+        <RollingFile name="RollingFile" fileName="${logPath}/oneblog_logs.log"
+                     filePattern="${logPath}/um_logs_%d{yyyyMMdd}_%i.log">
+            <PatternLayout pattern="%d %-5p %C %L - %m%n" />
+            <Policies>
+                <!-- 每天更新一次 -->
+                <TimeBasedTriggeringPolicy modulate="true"
+                                           interval="1" />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <!-- 最多备份20个 -->
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <!--additivity开启的话，由于这个logger也是满足root的，所以会被打印两遍。-->
+        <Logger name="com.github.wolfclub.oneblog.mapper" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>
