@@ -57,8 +57,11 @@ public class MybatisConfig {
 
 		// pagehelper5 文档中没有看到此参数
 		// properties.setProperty("returnPageInfo", "check");
-		// params默认值 pageNum=pageNum;pageSize=pageSize;count=countSql;reasonable=reasonable;pageSizeZero=pageSizeZer
-		properties.setProperty("params", "count=countSql");
+
+		// 为了支持startPage(Object params)方法，增加了该参数来配置参数映射，用于从对象中根据属性名取值
+		// params默认值 pageNum=pageNum;pageSize=pageSize;count=countSql;reasonable=reasonable;pageSizeZero=pageSizeZero
+		// 如果类中存在pageNum， pageSize参数 这两个参数在insert方法中会有影响
+		properties.setProperty("params", "pageNum=_pageNum;pageSize=_pageSize;count=countSql");
 		pageInterceptor.setProperties(properties);
 		return pageInterceptor;
 	}
