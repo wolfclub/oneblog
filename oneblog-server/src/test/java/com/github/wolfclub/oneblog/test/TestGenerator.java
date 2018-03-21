@@ -38,6 +38,7 @@ public class TestGenerator extends AbstractTransactionalJUnit4SpringContextTests
         user.setLastModifierName("liuchan2");
         user.setLastModifyTime(new Date());
         user.setVersionTime(new Date());
+        user.setVersion(0L);
         userMapper.insert(user);
 
         System.out.println(user.getId());

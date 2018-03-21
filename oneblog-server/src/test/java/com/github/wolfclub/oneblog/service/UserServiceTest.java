@@ -51,7 +51,7 @@ public class UserServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 
 
 	@Test
-	@Rollback(value = false)
+//	@Rollback(value = false)
 	public void save() throws ServiceException, VersionConflictException, JsonProcessingException {
 
 		System.out.println("\nUserServiceTest:save 开始测试 >>>");

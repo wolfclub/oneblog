@@ -3,6 +3,7 @@ package com.github.wolfclub.oneblog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.wolfclub.oneblog.common.jpa.PBaseEntity;
+import com.github.wolfclub.oneblog.commons.entity.HasVersion;
 import com.github.wolfclub.oneblog.commons.entity.OperateContext;
 import com.github.wolfclub.oneblog.commons.query.AggregateQueryFilter;
 import com.github.wolfclub.oneblog.commons.util.Assert;
@@ -40,6 +41,7 @@ public abstract class BaseEntityServiceImpl<T extends PBaseEntity> implements Ba
 		updateLastModifyInfo(entity, operCtx);
 		if (entity.getId() == null || entity.getId() == 0) {
 			updateCreateInfo(entity, operCtx);
+			entity.setVersion(HasVersion.START_VERSION);
 			return getEntityMapper().insert(entity);
 		} else {
 			int flag = getEntityMapper().updateByPrimaryKey(entity);
