@@ -6,6 +6,8 @@ package com.github.wolfclub.oneblog.commons.entity;
  */
 public interface HasVersion {
 
+    long START_VERSION = 0L;
+
     /**
      * 获取版本号
      * @return
