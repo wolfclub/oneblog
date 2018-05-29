@@ -1,5 +1,5 @@
 # maven ignore
-/target*
+target*
 *.jar
 !.mvn/wrapper/*
 *.war
@@ -11,6 +11,7 @@
 .settings/
 .project
 .classpath
+.factorypath
 
 # idea ignore
 .idea/
